@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: tuke.gamestudio.ScoreServiceJDBCTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! - in tuke.gamestudio.ScoreServiceJDBCTest
+addScore(tuke.gamestudio.ScoreServiceJDBCTest)  Time elapsed: 0.013 s  <<< ERROR!
+sk.tuke.gamestudio.service.exception.ScoreException: Error saving score
+	at tuke.gamestudio.ScoreServiceJDBCTest.addScore(ScoreServiceJDBCTest.java:19)
+Caused by: org.postgresql.util.PSQLException: 
+ERROR: null value in column "ident" violates not-null constraint
+  Detail: Failing row contains (null, Hra, 2019-05-13 00:00:00, Jankaaa, 268).
+	at tuke.gamestudio.ScoreServiceJDBCTest.addScore(ScoreServiceJDBCTest.java:19)
+

@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: tuke.gamestudio.RatingServiceJDBCTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.035 s <<< FAILURE! - in tuke.gamestudio.RatingServiceJDBCTest
+addRating(tuke.gamestudio.RatingServiceJDBCTest)  Time elapsed: 0.035 s  <<< ERROR!
+sk.tuke.gamestudio.service.exception.RatingException: Error saving rating
+	at tuke.gamestudio.RatingServiceJDBCTest.addRating(RatingServiceJDBCTest.java:18)
+Caused by: org.postgresql.util.PSQLException: 
+ERROR: null value in column "ident" violates not-null constraint
+  Detail: Failing row contains (null, Mlyny, Janka, 2019-05-13 00:00:00, 50).
+	at tuke.gamestudio.RatingServiceJDBCTest.addRating(RatingServiceJDBCTest.java:18)
+

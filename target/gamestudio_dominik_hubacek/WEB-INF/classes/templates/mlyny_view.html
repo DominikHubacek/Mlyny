@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mlyny_view</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="refresh" content='1'/>
+    <link rel="stylesheet" th:href="@{/css/mlyny.css}">
+    <script th:src="@{/js/qr/jquery.min.sk}"></script>
+    <script th:src="@{/js/qr/qrcode.js}"></script>
+    <script th:src="@{/js/setting.js}"></script>
+
+    <script type="text/javascript" src="../static/js/qr/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/qr/qrcode.js"></script>
+
+
+</head>
+<body>
+<h1>Mlyny</h1>
+<div th:if="${htmlField == null}">
+    <h2>Display ID: <span th:text="${displayId}"/></h2>
+</div>
+<!--    <span th:text="${@nineController.displayId}"/></h2>-->
+<div class="displayQr">
+<div th:if="${htmlField == null}">
+    <div id="qrcode"></div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var displayId =  /*[[${displayId}]]*/ 'default';
+        var url = serverURL + "/mlyny/display/pair/" + displayId;
+        new QRCode(document.getElementById("qrcode"), url);
+        /*]]>*/
+    </script>
+</div>
+</div>
+
+<div th:if="${htmlField != null}">
+<div class="vertical-menu" id="vertical">
+    <div class="multiplayerSign">Multiplayer access</div>
+    <br>
+    <br>
+    <h3>Display ID: <span th:text="${displayId}"/></h3>
+    <div class="qrConnection">
+        <div th:id="qrcode" th:class="qrcode"></div>
+    </div>
+    <div th:if="${disable == 0}">
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var displayId =  /*[[${displayId}]]*/ 'default';
+            var url = serverURL + "/mlyny/display/pair/" + displayId;
+            new QRCode(document.getElementById("qrcode"), url);
+            /*]]>*/
+        </script>
+    </div>
+</div>
+</div>
+
+<div class="vertical-menuRight" id="verticalRight">
+    <div class="servicesSign">Services</div>
+    <div th:utext="${@nineController.avgRating}"></div>
+    <div class="scoresSign">Top 5 Scores</div>
+    <div th:utext="${@nineController.scores}"></div>
+    <div class="commentSign">Comments</div>
+    <div th:utext="${@nineController.comments}"></div>
+</div>
+
+<div th:if="${htmlField != null}">
+    <div th:utext="${htmlField}"></div>
+</div>
+</body>
+</html>

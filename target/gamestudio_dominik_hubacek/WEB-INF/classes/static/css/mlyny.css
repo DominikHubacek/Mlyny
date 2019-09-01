@@ -1,0 +1,210 @@
+html, body {
+    background-color: #696969;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    font-size: 60px;
+}
+
+table {
+    background: #696969;
+    width: 448px;
+    height: 448px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+div.stat {
+    text-align: center;
+    font-size: 20px;
+
+}
+
+div.avgRating {
+    color: darkgrey;
+    font-size: 25px;
+    margin-left: 20%;
+    padding-top: 1%;
+}
+
+div div.stat {
+    text-align: center;
+    font-size: 20px;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+img.game {
+    width: 64px;
+    height: 64px;
+}
+
+div.qrConnection {
+    margin-left: 7%;
+    margin-top: 10%;
+    display: inline-block;
+    padding-top: 10%;
+}
+
+button.disconnect {
+    overflow: hidden;
+
+}
+
+div.displayQr {
+    margin-left: 40%;
+}
+
+h2 {
+    margin-left: 45%;
+}
+
+button.ng {
+    overflow: hidden;
+    margin-left: 45%;
+}
+
+div.vertical-menu {
+    width: 30%; /* Set a width if you like */
+    height: 100%;
+    overflow: hidden;
+    background-color: #696969;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0vh; /* Position the navbar at the top of the page */
+}
+
+div.vertical-menuMlyny {
+    width: 15%; /* Set a width if you like */
+    height: 100%;
+    overflow: hidden;
+    background-color: #696969;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0vh; /* Position the navbar at the top of the page */
+}
+
+div.vertical-menuRight {
+    width: 30%; /* Set a width if you like */
+    height: 95%;
+    overflow: hidden;
+    background-color: #696969;
+    position: fixed;
+    right: 0;
+    top: 0; /* Position the navbar at the top of the page */
+    margin-bottom: 10px;
+}
+
+div.multiplayerSign {
+    color: darkgrey;
+    font-size: 40px;
+    margin-left: 4%;
+    padding-top: 10%;
+}
+
+div.servicesSign {
+    color: darkgrey;
+    font-size: 40px;
+    margin-left: 25%;
+    padding-top: 10%;
+}
+
+div.pl {
+    float: left;
+}
+
+div.plc {
+    float: left;
+    background-color: lightgrey;
+    overflow: hidden;
+    display: inline-block;
+}
+
+div.commentSign {
+    color: darkgrey;
+    font-size: 25px;
+    margin-left: 25%;
+}
+
+div.scoresSign {
+    color: darkgrey;
+    font-size: 25px;
+    margin-left: 25%;
+    padding-top: 1%;
+}
+
+div.sc {
+    float: right;
+    margin-right: 5%;
+
+}
+
+div.cc {
+    background-color: lightgrey;
+    overflow: hidden;
+    display: inline-block;
+
+}
+
+form.rating, label {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 20px;
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+    border: none;
+    float: left;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+    color: #FFD700;
+}
+
+/* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+    color: #FFED85;
+}

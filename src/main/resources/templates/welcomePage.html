@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:src="@{/js/setting.js}"></script>
+    <script th:src="@{/js/welcomePage.js}"></script>
+</head>
+<body>
+<h1>Gamestudio</h1>
+<div class="images">
+    <img onclick="redirMlyny()" th:src="@{/images/mlyny.gif}">
+    <img onclick="redirMlynyView()" th:src="@{/images/mlynyView.png}">
+</div>
+<!--<button onclick="redirMlyny()">Mlyny</button>-->
+<!--<button onclick="redirMlynyView()">Mlyny - view</button>-->
+</body>
+</html>

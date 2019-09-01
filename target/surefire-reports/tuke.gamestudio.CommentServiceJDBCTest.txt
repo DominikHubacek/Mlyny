@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: tuke.gamestudio.CommentServiceJDBCTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.355 s <<< FAILURE! - in tuke.gamestudio.CommentServiceJDBCTest
+addComment(tuke.gamestudio.CommentServiceJDBCTest)  Time elapsed: 0.318 s  <<< ERROR!
+sk.tuke.gamestudio.service.exception.CommentException: Error saving comment
+	at tuke.gamestudio.CommentServiceJDBCTest.addComment(CommentServiceJDBCTest.java:19)
+Caused by: org.postgresql.util.PSQLException: 
+ERROR: null value in column "ident" violates not-null constraint
+  Detail: Failing row contains (null, videne, 2019-05-13 00:00:00, Mlyny, Janka).
+	at tuke.gamestudio.CommentServiceJDBCTest.addComment(CommentServiceJDBCTest.java:19)
+

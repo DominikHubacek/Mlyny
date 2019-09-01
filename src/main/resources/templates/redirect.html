@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>redirect</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/mlyny.css}">
+    <script th:src="@{/js/setting.js}"></script>
+</head>
+
+<body>
+<h1>Redirect</h1>
+<h2>Display ID: <span th:text="${displayId}"/></h2>
+<div th:if="${displayId != null}">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var displayId =  /*[[${displayId}]]*/ 'default';
+        console.log(displayId);
+        window.location.replace(serverURL + "/mlyny/display/" + displayId);
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>
+
+
+

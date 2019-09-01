@@ -1,0 +1,11 @@
+#POST https://kp.kpi.fei.tuke.sk/gamestudio_dominik_hubacek/rest/score
+POST http://localhost:8080/rest/score
+Content-type: application/json
+
+{
+  "game": "Mlyny",
+  "player": "akozeickoooooodwadawooooooo",
+  "points": 2
+}
+
+###

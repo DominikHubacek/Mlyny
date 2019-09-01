@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Mlyny</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/css/mlyny.css}">
+    <script th:src="@{/js/qr/jquery.min.sk}"></script>
+    <script th:src="@{/js/qr/qrcode.js}"></script>
+    <script th:src="@{/js/setting.js}"></script>
+    <script th:src="@{/js/reload.js}"></script>
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+
+    <!--        <script th:src="@{/js/mlyny.js}"></script>-->
+
+
+    <script type="text/javascript" src="../static/js/qr/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/reload.js"></script>
+    <script type="text/javascript" src="../static/js/qr/qrcode.js"></script>
+</head>
+<body>
+<h1>Mlyny</h1>
+
+<div class="vertical-menuMlyny" id="verticalMlyny">
+    <div class="multiplayerSign">Multiplayer access</div>
+    <br>
+    <button th:id="disconnect" th:class="disconnect" class="disconnect" onclick="pair()">Disconnect</button>
+    <button th:id="disable" th:class="disable" class="disable" onclick="disable()">Disable Multiplayer</button>
+    <button th:id="enable" th:class="enable" class="enable" onclick="enable()">Enable Multiplayer</button>
+    <br>
+    <div class="qrConnection">
+        <div th:id="qrcode" th:class="qrcode"></div>
+    </div>
+
+
+    <div th:if="${connect != null}">
+        <div th:if="${player2 == null}">
+            <form method="get" th:action="@{/mlyny/login}">
+                Login 2: <input name="login" type="text"/>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div th:if="${player2 != null}">
+            Player 2: <span th:text="${player2}"/>.
+            <a th:href="@{/mlyny/logout/1}">Logout</a>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                plr2 =  /*[[${player2}]]*/ 'default';
+                tmp = true;
+                /*]]>*/
+            </script>
+        </div>
+    </div>
+
+    <div th:if="${connect == null}">
+        <div th:if="${player1 == null}">
+            <form method="get" th:action="@{/mlyny/login}">
+                Login 1: <input name="login" type="text"/>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div th:if="${player1 != null}">
+            Player 1: <span th:text="${player1}"/>.
+            <a th:href="@{/mlyny/logout/2}">Logout</a>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                plr1 =  /*[[${player1}]]*/ 'default';
+                /*]]>*/
+            </script>
+        </div>
+    </div>
+
+    <form method="get" th:action="@{/mlyny/comment}">
+        Comment: <input name="comment" type="text"/>
+        <input type="submit" value="Comment">
+    </form>
+
+    <div th:if="${disable != 3}">
+        <div th:if="${disable == 1}">
+            <!--    login 2-->
+            <div th:if="${player2 == null}">
+                <form method="get" th:action="@{/mlyny/login}">
+                    Login 2: <input name="login" type="text"/>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div th:if="${player2 != null}">
+                Player 2: <span th:text="${player2}"/>.
+                <a th:href="@{/mlyny/logout/2}">Logout</a>
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    plr2 =  /*[[${player2}]]*/ 'default';
+                    /*]]>*/
+                </script>
+            </div>
+        </div>
+        <!--    /login /logout-->
+        <!--        &lt;!&ndash;    QR code for 2 controller&ndash;&gt;-->
+        <!--        <div th:if="${disable == 0}">-->
+        <!--            <script th:inline="javascript">-->
+        <!--                /*<![CDATA[*/-->
+        <!--                var displayId =  /*[[${displayId}]]*/ 'default';-->
+        <!--                var url = serverURL + "/mlyny/display/pair/" + displayId;-->
+        <!--                new QRCode(document.getElementById("qrcode"), url);-->
+        <!--                /*]]>*/-->
+        <!--            </script>-->
+        <!--        </div>-->
+    </div>
+
+    <form class="rating" onclick="send()">
+        <input type="radio" id="star5" name="rating" value="100"/><label class="full" for="star5"
+                                                                         title="Awesome - 5 stars"></label>
+        <input type="radio" id="star4half" name="rating" value="90"/><label class="half" for="star4half"
+                                                                            title="Pretty good - 4.5 stars"></label>
+        <input type="radio" id="star4" name="rating" value="80"/><label class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+        <input type="radio" id="star3half" name="rating" value="70"/><label class="half" for="star3half"
+                                                                            title="Meh - 3.5 stars"></label>
+        <input type="radio" id="star3" name="rating" value="60"/><label class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+        <input type="radio" id="star2half" name="rating" value="50"/><label class="half" for="star2half"
+                                                                            title="Kinda bad - 2.5 stars"></label>
+        <input type="radio" id="star2" name="rating" value="40"/><label class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+        <input type="radio" id="star1half" name="rating" value="30"/><label class="half" for="star1half"
+                                                                            title="Meh - 1.5 stars"></label>
+        <input type="radio" id="star1" name="rating" value="20"/><label class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+        <input type="radio" id="starhalf" name="rating" value="10"/><label class="half" for="starhalf"
+                                                                           title="Sucks big time - 0.5 stars"></label>
+    </form>
+</div>
+
+<!--        <a th:href="@{/mlyny/display/pair/1}">Connect to display 1</a>-->
+<!--        <a th:href="@{/mlyny/display/unpair}">Disconnect from display-->
+<!--        </a><br/>-->
+<!--onthis redirect to/mlyny-->
+<!--        <a th:href="@{/mlyny/disable}">Disable Multiplayer</a><br/>-->
+<!--        <a th:href="@{/mlyny/enable}">Enable Multiplayer</a><br/>-->
+<!--        <div id="qrcode" class="qrcode"></div>-->
+
+<!--        <button th:id="disconnect" th:class="disconnect" class="disconnect" onclick="pair()">Disconnect</button>-->
+<!--        <div class="connection">-->
+<!--            <div th:id="qrcode" th:class="qrcode"></div>-->
+<!--        </div>-->
+<button th:id="ng" th:class="ng" class="ng" onclick="newGame()">New Game</button>
+<br>
+<!--        <a th:class="ng" class="ng" th:href="@{/mlyny/new}">New game</a><br/>-->
+<!--add services-->
+<!--try websocket-->
+<div th:classid="reload" th:id="reload" th:utext="${@nineController.htmlField}"></div>
+
+
+<!---->
+<!---->
+<!--loging that handles singleplayer || multiplayer game-->
+<!---->
+<!---->
+<!--        <div th:if="${connect != null}">-->
+<!--            <div th:if="${player2 == null}">-->
+<!--                <form method="get" th:action="@{/mlyny/login}">-->
+<!--                    Login 2: <input name="login" type="text"/>-->
+<!--                    <input type="submit" value="Login">-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div th:if="${player2 != null}">-->
+<!--                Player 2: <span th:text="${player2}"/>.-->
+<!--                <a th:href="@{/mlyny/logout/1}">Logout</a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div th:if="${connect == null}">-->
+<!--            <div th:if="${player1 == null}">-->
+<!--                <form method="get" th:action="@{/mlyny/login}">-->
+<!--                    Login 1: <input name="login" type="text"/>-->
+<!--                    <input type="submit" value="Login">-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div th:if="${player1 != null}">-->
+<!--                Player 1: <span th:text="${player1}"/>.-->
+<!--                <a th:href="@{/mlyny/logout/2}">Logout</a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div th:if="${disable != 3}">-->
+<!--            <div th:if="${disable == 1}">-->
+<!--            &lt;!&ndash;    login 2&ndash;&gt;-->
+<!--                <div th:if="${player2 == null}">-->
+<!--                    <form method="get" th:action="@{/mlyny/login}">-->
+<!--                        Player 2: <input name="login" type="text"/>-->
+<!--                        <input type="submit" value="Login">-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                <div th:if="${player2 != null}">-->
+<!--                    Player 2: <span th:text="${player2}"/>.-->
+<!--                    <a th:href="@{/mlyny/logout/2}">Logout</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;    /login /logout&ndash;&gt;-->
+<!--&lt;!&ndash;    QR code for 2 controller&ndash;&gt;-->
+<!--            <div th:if="${disable == 0}">-->
+<!--                <script th:inline="javascript">-->
+<!--                    /*<![CDATA[*/-->
+<!--                    var displayId =  /*[[${displayId}]]*/ 'default';-->
+<!--                    var url = serverURL + "/mlyny/display/pair/" + displayId;-->
+<!--                    new QRCode(document.getElementById("qrcode"), url);-->
+<!--                    /*]]>*/-->
+<!--                </script>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--qr code multiplayer //connect-->
+<script th:src="@{/js/mlyny.js}"></script>
+<script type="text/javascript" src="../static/js/mlyny.js"></script>
+
+</body>
+</html>

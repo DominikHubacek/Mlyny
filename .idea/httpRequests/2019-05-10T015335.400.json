@@ -1,0 +1,7 @@
+{
+  "timestamp": "2019-05-10T11:53:35.797+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Bad Request",
+  "path": "/gamestudio_dominik_hubacek/rest/score"
+}
